@@ -1,6 +1,13 @@
 //import express from 'express';
 const express = require('express');
 const router = require('./routes/index');
+
+const db = require('./config/db');
+
+db.authenticate()
+    .then(()=>console.log('Base de datos conectada'))
+    .catch(error => console.log(error))
+
 const app = express();
 
 //Definir puerto
