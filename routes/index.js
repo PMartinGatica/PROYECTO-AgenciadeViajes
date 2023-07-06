@@ -1,26 +1,17 @@
 const express = require('express');
 const router = express.Router();
 
-router.get('/',(req,res)=>{ //req - lo que enviamos y res- lo que express nos responde
-    res.render('inicio',{
-        pagina:'Inicio'
-    });
-});
-router.get('/nosotros',(req,res)=>{ //req - lo que enviamos y res- lo que express nos responde
-    res.render('nosotros',{
-        pagina: 'Nosotros'
-    });
-});
-router.get('/viajes',(req,res)=>{ //req - lo que enviamos y res- lo que express nos responde
-    res.render('viajes',{
-        pagina: 'Viajes'
-    });
-});
-router.get('/testimoniales',(req,res)=>{ //req - lo que enviamos y res- lo que express nos responde
-    res.render('testimoniales',{
-        pagina: 'Testimoniales'
-    });
-});
+const {
+        paginaInicio,
+        paginaNosotros,
+        paginaViajes,
+        paginaTestimoniales} = require('../controllers/paginasController.js');
+
+
+router.get('/',paginaInicio);
+router.get('/nosotros',paginaNosotros);
+router.get('/viajes',paginaViajes);
+router.get('/testimoniales',paginaTestimoniales);
 // router.get('/contacto',(req,res)=>{ //req - lo que enviamos y res- lo que express nos responde
 //     res.send('Contacto');
 // });
