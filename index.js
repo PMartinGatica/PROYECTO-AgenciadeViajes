@@ -27,6 +27,11 @@ app.use((req,res,next) =>{
 
 })
 
+//Agregar body parser
+
+app.use(express.urlencoded({extended:true}));
+
+
 //Agregar public
 
 app.use(express.static("public"));
