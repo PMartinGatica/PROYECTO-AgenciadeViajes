@@ -27,10 +27,24 @@ const paginaTestimoniales = (req,res)=>{ //req - lo que enviamos y res- lo que e
     });
 }
 
+const paginaDetalleViaje = async (req,res) =>{
+    const{slug} = req.params;
+    try {
+        const viaje = await Viaje.findOne({where :{slug}});
+        res.render('viaje',{
+            pagina: ' Informacion Viaje',
+            viaje
+        })
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 
 
 module.exports = {
                 paginaInicio,
                 paginaNosotros,
                 paginaTestimoniales,
-                paginaViajes};
+                paginaViajes,
+                paginaDetalleViaje};

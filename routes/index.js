@@ -5,12 +5,14 @@ const {
         paginaInicio,
         paginaNosotros,
         paginaViajes,
-        paginaTestimoniales} = require('../controllers/paginasController.js');
+        paginaTestimoniales,
+        paginaDetalleViaje} = require('../controllers/paginasController.js');
 
 
 router.get('/',paginaInicio);
 router.get('/nosotros',paginaNosotros);
 router.get('/viajes',paginaViajes);
+router.get('/viajes/:slug',paginaDetalleViaje);
 router.get('/testimoniales',paginaTestimoniales);
 // router.get('/contacto',(req,res)=>{ //req - lo que enviamos y res- lo que express nos responde
 //     res.send('Contacto');
