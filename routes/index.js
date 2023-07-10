@@ -1,15 +1,15 @@
 const express = require('express');
-const router = express.Router();
 
 const {
-        paginaInicio,
-        paginaNosotros,
-        paginaViajes,
-        paginaTestimoniales,
-        paginaDetalleViaje} = require('../controllers/paginasController.js');
-
+    paginaInicio,
+    paginaNosotros,
+    paginaViajes,
+    paginaTestimoniales,
+    paginaDetalleViaje} = require('../controllers/paginasController.js');
+    
 const {guardarTestimonial} = require('../controllers/testimonialController.js');
-
+    
+const router = express.Router();
 
 router.get('/',paginaInicio);
 router.get('/nosotros',paginaNosotros);
