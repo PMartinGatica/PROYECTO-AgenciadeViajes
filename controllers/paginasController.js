@@ -1,12 +1,21 @@
 const Viaje = require('../models/Viaje.js')
 const Testimonial = require('../models/Testimoniales.js')
 const paginaInicio = async (req,res)=>{ //req - lo que enviamos y res- lo que express nos responde
+
+    // Consultar 3  viajes del modelo viaje
+    const promiseDB=[];
+    promiseDB.push(Viaje.findAll({limit: 3 }));
+    promiseDB.push(Testimonial.findAll({limit: 3 }));
+
     try {
+        const resultado = await Promise.all(promiseDB);
+
         const viajes = await Viaje.findAll({limit: 3});
         res.render('inicio',{
             pagina:'Inicio',
             clase: 'home',
-            viajes
+            viajes: resultado[0],
+            testimoniales: resultado[1],
         });
         
     } catch (error) {
