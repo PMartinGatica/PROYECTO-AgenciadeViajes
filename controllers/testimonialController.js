@@ -1,6 +1,6 @@
 
-
-const guardarTestimonial = (req,res)=>{ //req - lo que enviamos y res- lo que express nos responde
+const Testimonial = require('../models/Testimoniales.js');
+const guardarTestimonial = async(req,res)=>{ //req - lo que enviamos y res- lo que express nos responde
     //validando formulario
     const {nombre,correo,mensaje} = req.body;
 
@@ -17,17 +17,30 @@ const guardarTestimonial = (req,res)=>{ //req - lo que enviamos y res- lo que ex
     }
 
     if (errores.length > 0) {
+        //Consultar testimoniales existentes
+        const testimoniales = await Testimonial.findAll();
         //mostrar vista con errores
         res.render('testimoniales',{
             pagina:'Testimoniales',
             errores,
             nombre,
             correo,
-            mensaje
+            mensaje,
+            testimoniales
         })
     }else{
         //ALmacenar en la BBDD
         
+        try {
+            await Testimonial.create({
+                nombre,
+                correo,
+                mensaje
+            })
+            res.redirect('/testimoniales');
+        } catch (error) {
+            console.log(error)
+        }
     }
 
 }

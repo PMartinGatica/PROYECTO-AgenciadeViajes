@@ -1,4 +1,5 @@
 const Viaje = require('../models/Viaje.js')
+const Testimonial = require('../models/Testimoniales.js')
 const paginaInicio = (req,res)=>{ //req - lo que enviamos y res- lo que express nos responde
     res.render('inicio',{
         pagina:'Inicio'
@@ -21,10 +22,18 @@ const paginaViajes = async (req,res)=>{ //req - lo que enviamos y res- lo que ex
         viajes,
     });
 }
-const paginaTestimoniales = (req,res)=>{ //req - lo que enviamos y res- lo que express nos responde
-    res.render('testimoniales',{
-        pagina: 'Testimoniales'
-    });
+const paginaTestimoniales = async(req,res)=>{ //req - lo que enviamos y res- lo que express nos responde
+    try {
+        const testimoniales = await Testimonial.findAll();
+        res.render('testimoniales',{
+            pagina: 'Testimoniales',
+            testimoniales
+        });
+        
+    } catch (error) {
+        console.log(error)
+    }
+    
 }
 
 const paginaDetalleViaje = async (req,res) =>{
