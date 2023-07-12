@@ -2,7 +2,8 @@ const Viaje = require('../models/Viaje.js')
 const Testimonial = require('../models/Testimoniales.js')
 const paginaInicio = (req,res)=>{ //req - lo que enviamos y res- lo que express nos responde
     res.render('inicio',{
-        pagina:'Inicio'
+        pagina:'Inicio',
+        clase: 'home'
     });
 }
 
@@ -20,6 +21,7 @@ const paginaViajes = async (req,res)=>{ //req - lo que enviamos y res- lo que ex
     res.render('viajes',{
         pagina: 'Próximos viajes',
         viajes,
+        
     });
 }
 const paginaTestimoniales = async(req,res)=>{ //req - lo que enviamos y res- lo que express nos responde
